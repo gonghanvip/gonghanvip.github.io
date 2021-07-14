@@ -18,7 +18,7 @@
 <h2> Introduction to&nbsp;Cross-Disciplinary Science Institute at Gettysburg College</h2>
 <p>The Cross-Disciplinary Science Institute at Gettysburg College <a href="https://xsigsummer.wordpress.com/about/" target="_blank" rel="noopener noreferrer">(X-Sig)</a> was established to help our community of students be research ready, research active and research connected. The X-SIG oversees a set of initiatives designed to equip our students with the skills necessary for modern research, preparing them to integrate multiple disciplines in order to answer science’s most pressing questions. </p>
 <h2>
-	Project Introudction	
+  Introudction	
 </h2>
 	<p> 
 	Granular materials are made up of many microscopic particles. It can range from the sand on the beach to coffee beans in the bag. Although granular material observes the force laws of interactions, it behaves very differently under certain circumstances, they can flow like a liquid, compress like gas, or form a rigid structure like solids. One of the reasons that give the granular material such an interesting characteristic is the friction among all the particles and how they affect the total energy of the state when the particles are in a specific arrangement. Granular material systems also have similar characteristics with traditional molecular glass formers. In the past 30 years, researchers used techniques from statistical mechanics. However, a basic assumption of statistical mechanics is being made for all the past research: equiprobability of states within the granular systems. In our research, we will try to determine if this is a valid assumption or not. By designing and constructing apparatus that can generate new configurations of particles, we can investigate whether microstates are equiprobable. Developing codes and using computer-automated data acquisition. We will analyze the states of each particle and the states of the system by image analysis and photoelastic stress analysis to find the contact forces between particles. We will also investigate what are the factors that give the granular material the ability to exhibit special characteristics in different states. </p>
@@ -26,6 +26,71 @@
 	<img src="Sources/Granular_matter_examples.png" width="390" height="300" alt="Intro" class="center">
 	</a>
 	
+<h2>
+	Appratus	
+</h2>
+<img src="Sources/appratus.jpeg" width="390" height="300" alt="Intro" class="center">
+	<p>
+    We are examinating the equiprobable states of the granular by reshuffles the&nbsp; arcylic particles using pneumatic piston powered by compressed air.&nbsp; </p>
+    <img src="Sources/particles.jpeg" width="390" height="300" alt="Intro" class="center">
+	<p> </p>
+<iframe width="390" height="400" src="https://www.youtube.com/embed/VJpZagr0vuk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="center"></iframe>
+	<p>
+		The complete set up of the pneumatic piston setup consiststs of: <br>
+		1. <a href="https://www.amazon.com/DEWALT-DWFP55126-6-Gallon-Pancake-Compressor/dp/B00K34UZBW" target="_blank" rel="noopener noreferrer">Air compressor</a>  <br>
+		2. <a href="https://www.amazon.com/SNS-AR3000-N02-Pressure-Regulator-Adjustable/dp/B07RL1KM9S/ref=sr_1_21?dchild=1&keywords=pressure+regulator&qid=1626283559&sr=8-21" target="_blank" rel="noopener noreferrer">Pressure regulator</a> <br>
+		3. <a href="https://www.amazon.com/Pneumatic-4V110-06-Pilot-Operated-Connection-Type%EF%BC%88220V%EF%BC%89/dp/B08D94T7MG/ref=sr_1_2_sspa?dchild=1&keywords=5%2F2-way%2Bpneumatic%2Bvalve&qid=1626283642&sr=8-2-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExQTZUREFMNllQVlc2JmVuY3J5cHRlZElkPUEwOTc2NDAyMTNOTklYSzRGQzRLRSZlbmNyeXB0ZWRBZElkPUEwMTc4MjU3MU0xNTE1RVpYOFpBMyZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU&th=1" target="_blank" rel="noopener noreferrer">5/2-way pneumatic valve </a> <br>
+		4. <a href="https://www.amazon.com/Parker-1-06DPSR03-0-Stainless-Cylinder-Non-cushioned/dp/B00BUA1R9W/ref=pd_di_sccai_5/132-3545632-0127335?pd_rd_w=mzOvh&pf_rd_p=c9443270-b914-4430-a90b-72e3e7e784e0&pf_rd_r=V3KX8W9917CKXA16CA5K&pd_rd_r=2936a826-e46a-4b72-809b-28606c49a186&pd_rd_wg=yX5HF&pd_rd_i=B00BUA1R9W&psc=1" target="_blank" rel="noopener noreferrer">Pneumatic piston</a> <br>
+	  5. Various quick connectors and air lines
+	</p>
+	
+	<p>
+		Using the Raspberry Pi and a relay, we are able to control the pneumatic valve remotely, therefore automate the shuffling process. 
+	</p>
+	<img src="Sources/electrical.jpeg" width="390" height="300" alt="Intro" class="center">
 
+	
+<h2>
+	Coding
+</h2>
+	<p>
+		The programming language for this project is Python. Using the OpenCV and SKImage for the image analysis, gPhoto2 for the DSLR control to captrue the image of the particles.
+	</p>
+	<p>
+		All the codes can be split into 2 sections. Data collection and data analysis. 
+	</p>
+<h3>
+	Data collection
+</h3>
+	<p>
+		Thanks to our automated piston setup and DSLR setup, we are able to collect one data point within 10 seconds. Which means we have a lot of data to work with. After taking the pictures, there are a couple things to do: <br>
+		1. Undistort the images due to the lens distortion <br>
+		2. Line detection for the floor and the sides <br>
+		3. Circle detection <br>
+	
+	</p>
+	<p>
+		First, we need to un-distort the images we take. Distortion by the lens exists in most of the cameras. To have the best image for the computer to analyze, we need to undistort the images. To do so, we need to generate sets of calibration data. We take images of a checkerboard on a flat piece of acrylic. It is quite a repetitive process. We divide the frame up in 9 sections and take 45 images in total. Afterwards, we use the OpenCV library to generate the calibration data we need to undistort the images. 
+	</p>
+	<img src="Sources/Picture2.jpg" width="390" height="600" alt="Intro" class="center">
+	
+	<p>
+		With the collaboration with Dr. Puckett, we are able separate our red edges from the images and remove the small blobs that came from the poor spray paint technique.  
+	</p>
+	<img src="Sources/Picture3.png" width="390" height="600" alt="Intro" class="center">
+	<p>
+		So, we feed this image into our Hough line detection algorithm within the OpenCV library. We can get two pairs of coordinates that tells us the lines the computer has found. The blue lines on both edges are the results from the Hough line detection. To make the circle detection algorithm more efficient, we masked the region outside of both edges with Gettysburg Orange. 
+	</p>
+	<img src="Sources/Picture4.jpg" width="390" height="600" alt="Intro" class="center">
+	<p>
+		After both edges are done, we move on to the horizontal floor detection. We separated the black channel of the image. As you can see, we have some problems. The particles are black as well. The line detection detected more lines within the particles. We decided not to paint the floor piece. Since the floor piece will be moving up and down within the box. We do not want to have paint rubbing within our walls. We can filter out these lines and look for the horizontal line we need. We achieve this by checking the slope, location, and the length of the lines. Our line we need should have a relatively low to zero slope, and it should be located in the lower portion of the image, and it should be the longest line. 
+	</p>
+	<img src="Sources/Picture5.jpg" width="390" height="600" alt="Intro" class="center">
+	
+	<p>
+		This is our result of our line detection. Next step is the final circle detection.
+	</p>
+	<img src="Sources/Picture6.jpg" width="390" height="600" alt="Intro" class="center">
+	
 </body>
 </html>
