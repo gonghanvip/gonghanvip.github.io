@@ -72,25 +72,25 @@
 	<p>
 		First, we need to un-distort the images we take. Distortion by the lens exists in most of the cameras. To have the best image for the computer to analyze, we need to undistort the images. To do so, we need to generate sets of calibration data. We take images of a checkerboard on a flat piece of acrylic. It is quite a repetitive process. We divide the frame up in 9 sections and take 45 images in total. Afterwards, we use the OpenCV library to generate the calibration data we need to undistort the images. 
 	</p>
-	<img src="Sources/Picture2.jpg" width="390" height="600" alt="Intro" class="center">
+	<img src="Sources/Picture2.jpg" width="195" height="300" alt="Intro" class="center">
 	
 	<p>
 		With the collaboration with Dr. Puckett, we are able separate our red edges from the images and remove the small blobs that came from the poor spray paint technique.  
 	</p>
-	<img src="Sources/Picture3.png" width="390" height="600" alt="Intro" class="center">
+	<img src="Sources/Picture3.png" width="195" height="300" alt="Intro" class="center">
 	<p>
 		So, we feed this image into our Hough line detection algorithm within the OpenCV library. We can get two pairs of coordinates that tells us the lines the computer has found. The blue lines on both edges are the results from the Hough line detection. To make the circle detection algorithm more efficient, we masked the region outside of both edges with Gettysburg Orange. 
 	</p>
-	<img src="Sources/Picture4.jpg" width="390" height="600" alt="Intro" class="center">
+	<img src="Sources/Picture4.jpg" width="195" height="300" alt="Intro" class="center">
 	<p>
 		After both edges are done, we move on to the horizontal floor detection. We separated the black channel of the image. As you can see, we have some problems. The particles are black as well. The line detection detected more lines within the particles. We decided not to paint the floor piece. Since the floor piece will be moving up and down within the box. We do not want to have paint rubbing within our walls. We can filter out these lines and look for the horizontal line we need. We achieve this by checking the slope, location, and the length of the lines. Our line we need should have a relatively low to zero slope, and it should be located in the lower portion of the image, and it should be the longest line. 
 	</p>
-	<img src="Sources/Picture5.jpg" width="390" height="600" alt="Intro" class="center">
+	<img src="Sources/Picture5.jpg" width="195" height="300" alt="Intro" class="center">
 	
 	<p>
 		This is our result of our line detection. Next step is the final circle detection.
 	</p>
-	<img src="Sources/Picture6.jpg" width="390" height="600" alt="Intro" class="center">
+	<img src="Sources/Picture6.jpg" width="195" height="300" alt="Intro" class="center">
 	
 </body>
 </html>
